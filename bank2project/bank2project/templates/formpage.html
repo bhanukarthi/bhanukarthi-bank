@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Form on Button Click</title>
+</head>
+
+ <style>
+    #myForm {
+      display: none;
+      font-family: Arial, sans-serif;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+ </style>
+<body style="background-color:#FFA07A;">
+
+  <button onclick="showForm()">Show Form</button>
+
+  <form id="myForm">
+    <!-- Your form elements go here -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <br>
+    <label for="date of Birth">DOB</label>
+    <input type="date" id="date of Birth" name="date of Birth">
+    <br>
+    <label for="age">Age</label>
+    <input type="number" id="age" name="age">
+    <br>
+    <label>
+      <input type="radio" name="gender" value="male">
+      Male
+    </label>
+
+    <label>
+      <input type="radio" name="gender" value="female">
+      Female
+    </label>
+    <br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+    <br>
+    <label for="address">Address</label>
+    <input type="text" id="address" name="address">
+    <br>
+     <label for="districts">Choose a district</label>
+
+    <!-- Dropdown list with options -->
+    <select id="districts" name="districts" onchange="populateCities()">
+      <option value="alappuzha">Alappuzha</option>
+      <option value="ernakulam">Ernakulam</option>
+      <option value="wayanad">Wayanad</option>
+      <option value="palakkad">Palakkad</option>
+      <option value="kottayam">Kottayam</option>
+    </select>
+    <br>
+    <!-- Label for the second dropdown -->
+    <label for="branches">Select a branch:</label>
+    <select id="branches" name="branches">
+    </select>
+    <br>
+    <label for="account">Choose a account type</label>
+    <select id="account" name="account">
+      <option value="savings account">Savings account</option>
+      <option value="current account">Current account</option>
+      <option value="salary account">Salary account</option>
+      <option value="fixed deposit account">Fixed deposit account</option>
+      <option value="recurring account">Recurring account</option>
+    </select>
+     <br>
+     <label for="checkbox1">Debit card</label>
+        <input type="checkbox" id="checkbox1" name="checkbox1">
+
+        <br>
+
+        <label for="checkbox2">Credit card</label>
+        <input type="checkbox" id="checkbox2" name="checkbox2">
+
+        <br>
+
+        <label for="checkbox3">Cheque book</label>
+        <input type="checkbox" id="checkbox3" name="checkbox3">
+
+      <br>
+
+         <input type="button" value="Submit" onclick="showMessageBox()">
+         <br>
+         <a href="{% url 'index' %}">Home page</a>
+
+
+         <br>
+ <form action="{% url 'logout' %}" method="post">
+     <button type="submit" value="Logout">
+         Logout
+     </button>
+ </form>
+
+
+   <script>
+        function showMessageBox() {
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+
+
+  <script>
+    function populateCities() {
+      var districtDropdown = document.getElementById("districts");
+      var branchDropdown = document.getElementById("branches");
+
+      branchDropdown.innerHTML = "";
+
+      var selectedDistrict = districtDropdown.value;
+      var branches;
+
+      switch (selectedDistrict) {
+         case "alappuzha":
+            branches = ["Mavelikara","Cherthala","Kalavoor"];
+            break;
+         case "ernakulam":
+             branches = ["Edapally","Angamaly","Cheranaloor"];
+             break;
+         case "wayanad":
+             branches = ["Lakkidi","Banasura","Soochipara"];
+             break;
+         case "palakkad":
+             branches = ["Malampuzha","Parambikulam","Kollengode"];
+             break;
+         case "kottayam":
+             branches = ["Vaikom","Ettumanoor","Kumarakam"];
+             break;
+         default:
+             branches = [];
+         }
+
+         branches.forEach(function(branch) {
+            var option = document.createElement("option");
+            option.value = branch;
+            option.text =  branch;
+            branchDropdown.add(option);
+         });
+       }
+
+  </script>
+
+
+
+  <!-- JavaScript to show the form when the button is clicked -->
+  <script>
+    function showForm() {
+      var form = document.getElementById("myForm");
+      form.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
+
+
+

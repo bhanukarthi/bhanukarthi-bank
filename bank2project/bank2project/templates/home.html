@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Django Home Page</title>
+    <style>
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 26px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        select {
+            padding: 4px;
+            font-size: 16px;
+            position: absolute;
+            min-width: 100px;
+            min-height: 40px;
+            margin-bottom:150px;
+        }
+        .custom-button {
+          margin-left:150px;
+          margin-right:10px;
+          position: absolute;
+          min-height: 20px;
+
+        }
+
+    </style>
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+        <a href="{% url 'branches' %}">Branches</a>
+
+        <form>
+    <label for="wikiPages"></label>
+    <select id="wikiPages" name="wikiPages">
+      <option value="" selected disabled >Select a branch</option>
+      <option value="https://en.wikipedia.org/wiki/Alappuzha">Alappuzha</option>
+      <option value="https://en.wikipedia.org/wiki/Kottayam">Kottayam</option>
+      <option value="https://en.wikipedia.org/wiki/Thrissur">Thrissur</option>
+      <option value="https://en.wikipedia.org/wiki/Palakkad">Palakkad</option>
+      <option value="https://en.wikipedia.org/wiki/Ernakulam">Ernakulam</option>
+      <!-- Add more options as needed -->
+    </select>
+    <br>
+
+    <input type="button" value="Branch details" class="custom-button" onclick="navigateToPage()">
+    </form>
+
+  <script>
+   function navigateToPage() {
+      var selectElement = document.getElementById("wikiPages");
+      var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+
+      if (selectedValue) {
+        // Open the selected Wikipedia page in a new tab
+        window.open(selectedValue, '_blank');
+      }
+    }
+  </script>
+
+
+    </nav>
+
+    <!-- Main content -->
+    <h1>Welcome to Your Django Home Page!</h1>
+</body>
+</html>
+
+
